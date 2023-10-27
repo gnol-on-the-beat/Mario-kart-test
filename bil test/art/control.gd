@@ -13,7 +13,9 @@ var engine_power
 @export var turbo_factor = 1.85
 var turbo_power = car_speed * turbo_factor #engine power with turbo
 
-var test = 1
+var drifting = false
+var drifting_trans = false
+
 var steer_direction
 var acceleration = Vector2.ZERO
 
@@ -52,7 +54,6 @@ func get_input():
 	else: 
 		engine_power = car_speed
 		$CarSprite.texture = car_sprite
-	print(engine_power)
 
 
 func calculate_steering(delta):
@@ -65,15 +66,17 @@ func calculate_steering(delta):
 	#Set the velocity and rotation to the new direction
 	var new_heading = rear_wheel.direction_to(front_wheel)
 #drift
+	var drift_fade_time
 	if Input.is_action_pressed("drift"):
+		drifting = true
+	else: drifting = false
+	if drifting:
 		traction = traction_drift
-		steering_angle = drift_steer
-	else: 
-		traction = traction_normal
-		steering_angle = handling
-
+	if traction < traction_normal and not drifting:
+		traction = min(traction * 2 , traction_normal)
+	print(traction)
 	
-	#reverse
+	#reverse, traction
 	var d = new_heading.dot(velocity.normalized())
 	if d > 0:
 		velocity = lerp(velocity, new_heading * velocity.length(), traction * delta)
