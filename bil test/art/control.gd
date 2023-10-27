@@ -1,4 +1,5 @@
 extends CharacterBody2D
+# Yo what tha fast is up
 
 var turbo_sprite = preload("res://art/car_turbo.png")
 var car_sprite = preload("res://art/car.png")
