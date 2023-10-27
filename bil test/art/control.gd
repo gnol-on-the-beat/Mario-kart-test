@@ -9,8 +9,9 @@ var car_sprite = preload("res://art/car.png")
 var drift_steer = 24 #steering angle while drifting
 var regular_steer = 19 #steering angle while not drifting
 @export var car_speed = 800 #engine power without turbo
-var engine_power = 800
-@export var turbo_power = 1500 #engine power with turbo
+var engine_power
+@export var turbo_factor = 1.85
+var turbo_power = car_speed * turbo_factor #engine power with turbo
 
 var test = 1
 var steer_direction
@@ -88,7 +89,7 @@ func apply_friction(delta):
 	acceleration += drag_force + friction_force
 
 
-#make drift and turbo flexible so we only have to tweak "one number per action, per car
+#make drift and turbo flexible so we only have to tweak "one number per action, per car"
 #interpolate drift tail
 #add skid mark texture
 #add grip zones on track based on underlag, or barriers
