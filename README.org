@@ -8,6 +8,17 @@ Vroom vroom
 
 * Todos
 
-- [ ] Skapa bättre todo // John
-- [X] Example task 2
-- [ ] Tag bort example tasks
+*Gaming*
+- Turbo fuel tank
+- Sänk turn angle ju snabbare man åker
+
+*UI*
+- Select car
+- Select track
+
+*Level*
+- collision zone
+- underlag
+- checkpoints + lap timer
+- lap count + finish screen
+
