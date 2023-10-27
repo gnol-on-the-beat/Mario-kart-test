@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cga3qnq6p0dhd"]
+
+[ext_resource type="PackedScene" uid="uid://bpucqdq5661hn" path="res://art/car.tscn" id="1_rof8s"]
+[ext_resource type="Texture2D" uid="uid://bqx38gwcy4nhy" path="res://art/track.png" id="2_uo2na"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_rof8s")]
+position = Vector2(561, 341)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="CharacterBody2D"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -5
+offset_left = -1377.0
+offset_top = -1420.0
+offset_right = 2463.0
+offset_bottom = 740.0
+texture = ExtResource("2_uo2na")
+flip_h = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(561, 341)
