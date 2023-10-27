@@ -4,8 +4,8 @@ var turbo_sprite = preload("res://art/car_turbo.png")
 var car_sprite = preload("res://art/car.png")
 
 @export var wheel_base = 70 #Distance from front to rear wheel
-@export var handling = 10 #how much steering decreases with speed
-@export var steering_angle = 19 #Amount that front wheel turns, in degrees (output)
+@export var handling = 15 #how much steering decreases with speed
+@export var steering_angle = 15 #Amount that front wheel turns, in degrees (output)
 var drift_steer = 24 #steering angle while drifting
 var regular_steer = 19 #steering angle while not drifting
 @export var car_speed = 800 #engine power without turbo
@@ -73,8 +73,8 @@ func calculate_steering(delta):
 	if drifting:
 		traction = traction_drift
 	if traction < traction_normal and not drifting:
-		traction = min(traction * 2 , traction_normal)
-	print(traction)
+		traction = min(traction * pow(1.1, delta*60)	 , traction_normal)
+	#print(traction)
 	
 	#reverse, traction
 	var d = new_heading.dot(velocity.normalized())
@@ -90,6 +90,8 @@ func apply_friction(delta):
 	var friction_force = velocity * friction * delta
 	var drag_force = velocity * velocity.length() * drag * delta
 	acceleration += drag_force + friction_force
+
+	print(steer_direction)
 
 
 #make drift and turbo flexible so we only have to tweak "one number per action, per car"
