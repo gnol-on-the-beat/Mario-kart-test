@@ -8,7 +8,7 @@ Vroom vroom
 ## Todos ##
 
 *Gaming*
-- [ ] Turbo fuel tank
+- [ ] Turbo fuel tank // John
 - [ ] Turbo recharge items
 - [ ] Sänk turn angle ju snabbare man åker
 
