@@ -75,7 +75,6 @@ func calculate_steering(delta):
 	#Set the velocity and rotation to the new direction
 	var new_heading = rear_wheel.direction_to(front_wheel)
 #drift
-	var drift_fade_time
 	if Input.is_action_pressed("drift"):
 		drifting = true
 	else: drifting = false
