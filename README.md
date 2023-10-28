@@ -16,7 +16,7 @@ Vroom vroom
 *UI*
 - [ ] Select car
 - [ ] Select track
-- [ ] Turbo fuel tank indicator
+- [ ] Turbo fuel tank indicator // Kristoffer
 
 *Level*
 - [ ] collision zone
