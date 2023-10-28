@@ -8,7 +8,7 @@ Vroom vroom
 ## Todos ##
 
 *Gaming*
-- [ ] Turbo fuel tank // John
+- [x] Turbo fuel tank 
 - [ ] Turbo recharge items
 - [ ] Sänk turn angle ju snabbare man åker
 
@@ -16,6 +16,7 @@ Vroom vroom
 *UI*
 - [ ] Select car
 - [ ] Select track
+- [ ] Turbo fuel tank indicator
 
 *Level*
 - [ ] collision zone

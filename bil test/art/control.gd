@@ -1,6 +1,4 @@
 extends CharacterBody2D
-# Yo what tha fast is up
-# simps
 
 var Utils = preload("res://art/Utils.gd") # A collection of pure functions
 var turbo_sprite = preload("res://art/car_turbo.png")
@@ -22,6 +20,9 @@ var drifting_trans = false
 var steer_direction
 var acceleration = Vector2.ZERO
 
+var turbo_fuel = 1
+var turbo_is_on = false
+
 @export var friction = -60
 @export var drag = -0.06
 
@@ -34,22 +35,19 @@ var acceleration = Vector2.ZERO
 var traction = traction_normal
 
 
+
 func _physics_process(delta):
 	acceleration = Vector2.ZERO
 	get_input()
 	apply_friction(delta)
 	calculate_steering(delta)
 	velocity += acceleration * delta
+	turbo_fuel = Utils.updateFuel(delta, turbo_fuel, turbo_is_on, 4, 20, false)
+	print("Turbo fuel: %s" % turbo_fuel)
 	move_and_slide()
 	#print(velocity.length())
 
-	# A test to see if the utils functions work
-	if Utils.mytest(3,5) == 8:
-		print("Utils are working")
-	else:
-		print("Utils.mytest is not working")
-
-
+	
 func get_input():
 	var turn = Input.get_axis("turn_left","turn_right")
 	steer_direction = turn * deg_to_rad(steering_angle)
@@ -57,11 +55,13 @@ func get_input():
 		acceleration = transform.x * engine_power
 	if Input.is_action_pressed("brake"):
 		acceleration = transform.x * braking
-	if Input.is_action_pressed("turbo"):
+	if Input.is_action_pressed("turbo") and turbo_fuel > 0.3:
 		engine_power = turbo_power
+		turbo_is_on = true
 		$CarSprite.texture=turbo_sprite
 	else: 
 		engine_power = car_speed
+		turbo_is_on = false
 		$CarSprite.texture = car_sprite
 
 
