@@ -28,7 +28,7 @@ Vroom vroom
 - [ ] ska åka så det ser inte retarded ut
 - [ ] man kan enkelt ändra hur snabbt den tar sig runt banan
 
-* GOAL
+## GOALS ##
 - >3 bilar
 - >3 maps
 - fungerande mechanics
