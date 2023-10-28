@@ -6,7 +6,7 @@ var car_sprite = preload("res://art/car.png")
 
 @export var wheel_base = 70 #Distance from front to rear wheel
 @export var handling = 15 #how much steering decreases with speed
-@export var steering_angle = 15 #Amount that front wheel turns, in degrees (output)
+@export var steering_angle = 10 #Amount that front wheel turns, in degrees (output)
 var drift_steer = 24 #steering angle while drifting
 var regular_steer = 19 #steering angle while not drifting
 @export var car_speed = 800 #engine power without turbo
@@ -45,9 +45,8 @@ func _physics_process(delta):
 	turbo_fuel = Utils.updateFuel(delta, turbo_fuel, turbo_is_on, 4, 20, false)
 	print("Turbo fuel: %s" % turbo_fuel)
 	move_and_slide()
-	#print(velocity.length())
 
-	
+
 func get_input():
 	var turn = Input.get_axis("turn_left","turn_right")
 	steer_direction = turn * deg_to_rad(steering_angle)
@@ -56,9 +55,14 @@ func get_input():
 	if Input.is_action_pressed("brake"):
 		acceleration = transform.x * braking
 	if Input.is_action_pressed("turbo"):
-		engine_power = turbo_power
-		turbo_is_on = true
-		$CarSprite.texture=turbo_sprite
+		if turbo_fuel > 0:
+			engine_power = turbo_power
+			turbo_is_on = true
+			$CarSprite.texture=turbo_sprite
+		else: 
+			engine_power = car_speed
+			turbo_is_on = false
+			$CarSprite.texture = car_sprite
 	else: 
 		engine_power = car_speed
 		turbo_is_on = false
@@ -82,8 +86,6 @@ func calculate_steering(delta):
 		traction = traction_drift
 	if traction < traction_normal and not drifting:
 		traction = min(traction * pow(1.1, delta*60)	 , traction_normal)
-	#print(traction)
-	
 	#reverse, traction
 	var d = new_heading.dot(velocity.normalized())
 	if d > 0:
