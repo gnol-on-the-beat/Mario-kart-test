@@ -55,7 +55,7 @@ func get_input():
 		acceleration = transform.x * engine_power
 	if Input.is_action_pressed("brake"):
 		acceleration = transform.x * braking
-	if Input.is_action_pressed("turbo") and turbo_fuel > 0.3:
+	if Input.is_action_pressed("turbo"):
 		engine_power = turbo_power
 		turbo_is_on = true
 		$CarSprite.texture=turbo_sprite
