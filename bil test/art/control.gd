@@ -2,6 +2,7 @@ extends CharacterBody2D
 # Yo what tha fast is up
 # simps
 
+var Utils = preload("res://art/Utils.gd") # A collection of pure functions
 var turbo_sprite = preload("res://art/car_turbo.png")
 var car_sprite = preload("res://art/car.png")
 
@@ -41,6 +42,12 @@ func _physics_process(delta):
 	velocity += acceleration * delta
 	move_and_slide()
 	#print(velocity.length())
+
+	# A test to see if the utils functions work
+	if Utils.mytest(3,5) == 8:
+		print("Utils are working")
+	else:
+		print("Utils.mytest is not working")
 
 
 func get_input():
