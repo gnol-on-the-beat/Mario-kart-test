@@ -99,8 +99,6 @@ func apply_friction(delta):
 	var drag_force = velocity * velocity.length() * drag * delta
 	acceleration += drag_force + friction_force
 
-	print(steer_direction)
-
 
 #make drift and turbo flexible so we only have to tweak "one number per action, per car"
 #interpolate drift tail
