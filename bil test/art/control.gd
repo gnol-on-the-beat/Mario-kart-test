@@ -6,7 +6,9 @@ var car_sprite = preload("res://art/car.png")
 
 @export var wheel_base = 70 #Distance from front to rear wheel
 @export var handling = 15 #how much steering decreases with speed
-@export var steering_angle = 10 #Amount that front wheel turns, in degrees (output)
+@export var steering_angle_normal = 10 #degrees (output)
+var steering_angle = steering_angle_normal
+var steering_angle_drift = steering_angle / 0.5
 var drift_steer = 24 #steering angle while drifting
 var regular_steer = 19 #steering angle while not drifting
 @export var car_speed = 800 #engine power without turbo
@@ -84,8 +86,11 @@ func calculate_steering(delta):
 	else: drifting = false
 	if drifting:
 		traction = traction_drift
+		steering_angle = steering_angle_drift
 	if traction < traction_normal and not drifting:
-		traction = min(traction * pow(1.1, delta*60)	 , traction_normal)
+		traction = min(traction * pow(1.05, delta*60)	 , traction_normal) #traction fade
+	if steering_angle > steering_angle_normal and not drifting:
+		steering_angle = min(steering_angle / pow(1.05, delta*60)	 , traction_normal) #steer angle fade
 	#reverse, traction
 	var d = new_heading.dot(velocity.normalized())
 	if d > 0:
