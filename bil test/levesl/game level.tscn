@@ -23,3 +23,18 @@ metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(561, 341)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TubroBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.049
+anchor_top = 0.338
+anchor_right = 0.049
+anchor_bottom = 0.338
+offset_left = -28.448
+offset_top = 387.976
+offset_right = 74.552
+offset_bottom = 414.976
+max_value = 1.0
+value = 1.0

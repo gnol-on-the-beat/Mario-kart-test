@@ -80,7 +80,7 @@ func calculate_steering(delta):
 	front_wheel += velocity.rotated(steer_direction) * delta
 	#Set the velocity and rotation to the new direction
 	var new_heading = rear_wheel.direction_to(front_wheel)
-#drift
+	#drift
 	if Input.is_action_pressed("drift"):
 		drifting = true
 	else: drifting = false
