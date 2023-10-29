@@ -4,6 +4,8 @@ var Utils = preload("res://art/Utils.gd") # A collection of pure functions
 var turbo_sprite = preload("res://art/car_turbo.png")
 var car_sprite = preload("res://art/car.png")
 
+signal fuel_changed(turbo_fuel)
+
 @export var wheel_base = 70 #Distance from front to rear wheel
 @export var handling = 15 #how much steering decreases with speed
 @export var steering_angle_normal = 10 #degrees (output)
@@ -56,7 +58,9 @@ func get_input():
 		acceleration = transform.x * engine_power
 	if Input.is_action_pressed("brake"):
 		acceleration = transform.x * braking
+	#turbo
 	if Input.is_action_pressed("turbo"):
+		fuel_changed.emit(turbo_fuel)
 		if turbo_fuel > 0:
 			engine_power = turbo_power
 			turbo_is_on = true
@@ -105,9 +109,11 @@ func apply_friction(delta):
 	var friction_force = velocity * friction * delta
 	var drag_force = velocity * velocity.length() * drag * delta
 	acceleration += drag_force + friction_force
+	
 
 
 #make drift and turbo flexible so we only have to tweak "one number per action, per car"
 #interpolate drift tail
 #add skid mark texture
 #add grip zones on track based on underlag, or barriers
+
