@@ -10,7 +10,7 @@ Vroom vroom
 *Gaming*
 - [x] Turbo fuel tank
 - [ ] max turbo fuel (allowing for functionality of turbo items refilling the fuel tank with <1 at a time)
-- [ ] Turbo recharge items
+- [ ] Turbo recharge items // John
 - [ ] Sänk turn angle ju snabbare man åker
 
 
