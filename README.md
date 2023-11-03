@@ -5,7 +5,7 @@
 ## Description ##
 Vroom vroom
 
-## Todos ##
+## Todos -> 1 Dec ##
 
 *Gaming*
 - [x] Turbo fuel tank
@@ -14,8 +14,8 @@ Vroom vroom
 
 
 *UI*
-- [ ] Select car
-- [ ] Select track
+- [ ] Select car // Kristoffer
+- [ ] Select track // Kristoffer
 - [x] Turbo fuel tank indicator
 
 *Level*
@@ -24,8 +24,8 @@ Vroom vroom
 - [ ] lap count + lap timer
 
 *AI*
-- [ ] ska åka så det ser inte retarded ut
-- [ ] man kan enkelt ändra hur snabbt den tar sig runt banan
+- [ ] åker runt banan
+- [ ] collision
 
 ## GOALS ##
 - >3 bilar
