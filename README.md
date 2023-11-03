@@ -21,8 +21,7 @@ Vroom vroom
 *Level*
 - [ ] collision zone // Kristoffer
 - [ ] underlag // Kristoffer
-- [ ] checkpoints + lap timer
-- [ ] lap count + finish screen
+- [ ] lap count + lap timer
 
 *AI*
 - [ ] ska åka så det ser inte retarded ut
