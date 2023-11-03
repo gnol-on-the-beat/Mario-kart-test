@@ -10,7 +10,7 @@ Vroom vroom
 *Gaming*
 - [x] Turbo fuel tank
 - [ ] Turbo recharge items // John
-- [ ] Sänk turn angle ju snabbare man åker
+- [ ] Sänk turn angle ju snabbare man åker // John
 
 
 *UI*
@@ -21,11 +21,11 @@ Vroom vroom
 *Level*
 - [ ] collision zone // Kristoffer
 - [ ] underlag // Kristoffer
-- [ ] lap count + lap timer
+- [ ] lap count + lap timer // John
 
 *AI*
-- [ ] åker runt banan
-- [ ] collision
+- [ ] åker runt banan // John
+- [ ] collision // John
 
 ## GOALS ##
 - >3 bilar
