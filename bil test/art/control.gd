@@ -100,6 +100,8 @@ func calculate_steering(delta):
 	if d > 0:
 		velocity = lerp(velocity, new_heading * velocity.length(), traction * delta)
 	if d < 0:
+		turbo_is_on = false
+		$CarSprite.texture = car_sprite
 		velocity = -new_heading * min(velocity.length(), max_speed_reverse)
 	rotation = new_heading.angle()
 
