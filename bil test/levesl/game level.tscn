@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cga3qnq6p0dhd"]
+[gd_scene load_steps=7 format=3 uid="uid://cga3qnq6p0dhd"]
 
 [ext_resource type="PackedScene" uid="uid://bpucqdq5661hn" path="res://art/car.tscn" id="1_rof8s"]
 [ext_resource type="Texture2D" uid="uid://bqx38gwcy4nhy" path="res://art/track.png" id="2_uo2na"]
 [ext_resource type="Script" path="res://art/TubroBar.gd" id="3_gjory"]
+[ext_resource type="Texture2D" uid="uid://6t6h0chhhl71" path="res://art/sand.png" id="4_ofng8"]
+[ext_resource type="Texture2D" uid="uid://q5o2x58rrrit" path="res://art/bumpers.png" id="5_7v2a0"]
+[ext_resource type="Texture2D" uid="uid://bhbbjsdtmc2w2" path="res://art/stands.png" id="6_0yr28"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -41,8 +44,26 @@ max_value = 1.0
 value = 1.0
 script = ExtResource("3_gjory")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Sand" type="Area2D" parent="."]
+z_index = -4
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Sand"]
+position = Vector2(499, -451)
+texture = ExtResource("4_ofng8")
+
+[node name="Bumbers" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Bumbers"]
+position = Vector2(481, -466)
+texture = ExtResource("5_7v2a0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bumbers"]
+polygon = PackedVector2Array(0, 0)
+
+[node name="Stands" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Stands"]
+position = Vector2(502, -465)
+texture = ExtResource("6_0yr28")
 
 [connection signal="fuel_changed" from="Car" to="CanvasLayer/TubroBar" method="_on_car_fuel_changed"]
