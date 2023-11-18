@@ -112,10 +112,7 @@ func apply_friction(delta):
 	var friction_force = velocity * friction * delta
 	var drag_force = velocity * velocity.length() * drag * delta
 	acceleration += drag_force + friction_force
-	
-func collide():
-	velocity = velocity * -2
-	
+
 
 
 #make drift and turbo flexible so we only have to tweak "one number per action, per car"
