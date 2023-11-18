@@ -19,8 +19,8 @@ Vroom vroom
 - [x] Turbo fuel tank indicator
 
 *Level*
-- [x] collision zone // Kristoffer
-- [ ] underlag // Kristoffer
+- [x] collision zone
+- [x] underlag
 - [ ] lap count + lap timer // John
 
 *AI*
