@@ -27,6 +27,7 @@ var acceleration = Vector2.ZERO
 var turbo_fuel = 1
 var turbo_is_on = false
 
+
 @export var friction = -60
 @export var drag = -0.06
 
@@ -112,6 +113,9 @@ func apply_friction(delta):
 	var drag_force = velocity * velocity.length() * drag * delta
 	acceleration += drag_force + friction_force
 	
+func collide():
+	velocity = velocity * -2
+	
 
 
 #make drift and turbo flexible so we only have to tweak "one number per action, per car"
@@ -119,3 +123,8 @@ func apply_friction(delta):
 #add skid mark texture
 #add grip zones on track based on underlag, or barriers
 
+
+
+func _on_bumpers_body_entered(body):
+	if body.is_in_group("Player"):
+		body.collide()
