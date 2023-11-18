@@ -74,6 +74,11 @@ func get_input():
 		engine_power = car_speed
 		turbo_is_on = false
 		$CarSprite.texture = car_sprite
+		
+	#turbo debug
+	if Input.is_action_pressed("refill turbo"):
+		turbo_fuel = 1
+		fuel_changed.emit(turbo_fuel)
 
 
 func calculate_steering(delta):
