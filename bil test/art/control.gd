@@ -18,8 +18,14 @@ var engine_power
 @export var turbo_factor = 1.85
 var turbo_power = car_speed * turbo_factor #engine power with turbo
 
+
 var drifting = false
 var drifting_trans = false
+
+@export var off_road_factor = 0.5
+var off_road=false
+var off_road_speed = car_speed * off_road_factor
+var off_road_sand = false
 
 var steer_direction
 var acceleration = Vector2.ZERO
@@ -110,6 +116,11 @@ func calculate_steering(delta):
 		$CarSprite.texture = car_sprite
 		velocity = -new_heading * min(velocity.length(), max_speed_reverse)
 	rotation = new_heading.angle()
+	#off road
+	if off_road==true:
+		engine_power = off_road_speed
+	if off_road_sand==true:
+		engine_power = off_road_speed / 3
 
 func apply_friction(delta):
 	if acceleration == Vector2.ZERO and velocity.length() < 50:
@@ -118,9 +129,46 @@ func apply_friction(delta):
 	var drag_force = velocity * velocity.length() * drag * delta
 	acceleration += drag_force + friction_force
 
+func off_road_debuff():
+	off_road=true
 
+func back_on_road():
+	off_road=false
 
-#make drift and turbo flexible so we only have to tweak "one number per action, per car"
-#interpolate drift tail
+func sand_debuff():
+	off_road_sand=true
+
+func out_of_sand():
+	off_road_sand=false
+
 #add skid mark texture
-#add grip zones on track based on underlag, or barriers
+#
+#
+#signals
+
+#mid grass
+func _on_grass_body_exited(body):
+	if body.is_in_group("Player"):
+		body.back_on_road()
+
+func _on_grass_body_entered(body):
+	if body.is_in_group("Player"):
+		body.off_road_debuff()
+
+#outside grass
+func _on_road_body_entered(body):
+	if body.is_in_group("Player"):
+		body.back_on_road()
+
+func _on_road_body_exited(body):
+	if body.is_in_group("Player"):
+		body.off_road_debuff()
+
+#sand
+func _on_sand_body_entered(body):
+	if body.is_in_group("Player"):
+		body.sand_debuff()
+
+func _on_sand_body_exited(body):
+	if body.is_in_group("Player"):
+		body.out_of_sand()
