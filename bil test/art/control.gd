@@ -122,9 +122,3 @@ func collide():
 #interpolate drift tail
 #add skid mark texture
 #add grip zones on track based on underlag, or barriers
-
-
-
-func _on_bumpers_body_entered(body):
-	if body.is_in_group("Player"):
-		body.collide()
